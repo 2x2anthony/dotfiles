@@ -30,6 +30,22 @@ function IsHeadBranch {
     return 0
 }
 
+function GitGetMainBranchName {
+    IsGitRepo
+    if [[ 0 != $? ]]; then
+        return 1
+    fi
+
+    IsEmptyRepo
+    if [[ 0 == $? ]]; then
+        return 1
+    fi
+
+    local name=$(git rev-parse --abbrev-ref origin/HEAD | sed 's@^origin/@@')
+    echo $name
+    return 0
+}
+
 function GitBranchOrCurrentCommit {
     IsGitRepo
     if [[ 0 != $? ]]; then
@@ -116,7 +132,9 @@ function GitRepoCommitCountMain {
         return 0
     fi
 
-    local count=$(git rev-list --count main)
+    local defaultBranch=$(GitGetMainBranchName)
+
+    local count=$(git rev-list --count $defaultBranch)
     echo $count
     return 0
 }
