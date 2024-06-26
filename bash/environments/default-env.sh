@@ -14,6 +14,7 @@ function _DEFAULT_ENVIRONMENT_ {
         tmux send-keys -t $TMUX_SESSION_NAME aerc C-m
         tmux new-window -t $TMUX_SESSION_NAME -n Mastodon
         tmux send-keys -t $TMUX_SESSION_NAME "toot tui" C-m
+        tmux select-window -t $TMUX_SESSION_NAME:0
         exec tmux attach-session -t $TMUX_SESSION_NAME
     fi
 }
