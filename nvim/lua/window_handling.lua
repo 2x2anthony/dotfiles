@@ -14,7 +14,7 @@ end
 
 -- Performs a vertical split only if there is only one window.
 function Window.VerticalSplit()
-    if 2 >= panelCount then
+    if 2 <= panelCount then
         return
     end
 
@@ -28,7 +28,7 @@ end
 
 -- Performs a horizontal split only if there is only one window.
 function Window.HorizontalSplit()
-    if 2 >= panelCount then
+    if 2 <= panelCount then
         return
     end
 
