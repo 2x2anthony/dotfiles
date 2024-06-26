@@ -41,7 +41,7 @@ function GitGetMainBranchName {
         return 1
     fi
 
-    local name=$(git rev-parse --abbrev-ref origin/HEAD | sed 's@^origin/@@')
+    local name=$(git rev-parse --abbrev-ref HEAD | sed 's@^origin/@@')
     echo $name
     return 0
 }

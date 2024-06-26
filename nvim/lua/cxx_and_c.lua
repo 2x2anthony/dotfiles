@@ -1,3 +1,10 @@
+-------------------------------
+-- TODO
+--
+-- * Find matching C/C++ header/source files
+--   for current buffer.
+--
+
 -- *.inl files are included in this list as they are implementation
 -- files.
 local CAndCxxSourceExts = {'c', 'cpp', 'cxx', 'cc', 'inl'}
