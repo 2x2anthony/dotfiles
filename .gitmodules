@@ -1,0 +1,9 @@
+[submodule "nvim/onedark"]
+	path = nvim/colours/onedark
+	url = https://github.com/navarasu/onedark.nvim
+[submodule "nvim/plugins/gitsigns"]
+	path = nvim/plugins/gitsigns
+	url = https://github.com/lewis6991/gitsigns.nvim
+[submodule "nvim/plugins/hop.nvim"]
+	path = nvim/plugins/hop
+	url = https://github.com/smoka7/hop.nvim

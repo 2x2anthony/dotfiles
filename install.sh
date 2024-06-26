@@ -18,8 +18,16 @@ function _install_bash {
     source ~/.bash_aliases
 }
 
+function _setup_nvim {
+    # If this repository was not initialised with --recurse-submodules
+    # then the submodules have not been downloaded.
+    echo "Updating neovim plugins and themes..."
+    git submodule update --remote --recursive --init
+}
+
 function run {
     _install_bash
+    _setup_nvim
 }
 
 # Run the installation.

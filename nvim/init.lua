@@ -5,7 +5,9 @@
 
 -- Lua require updates
 
-package.path = string.format("%s/nvim/lua/?.lua;", os.getenv("DOTFILES_LOCATION")) .. package.path
+local dotfiles=os.getenv("DOTFILES_LOCATION")
+local luaDir = string.format("%s/nvim/lua/?.lua;", dotfiles)
+package.path = luaDir .. package.path
 
 -- Lua stdlib extensions
 
@@ -20,7 +22,22 @@ vim.g.mapleader = " "
 require("options").BaseSettings()
 require("autocmds").CreateGroups()
 
--- 
+-- Plugins
+
+require("plugins").Load('gitsigns').setup()
+require("plugins").Load('hop').setup {
+    keys = 'etovxqpdygfblzhckisuran',
+    current_line_only = false,
+    multi_windows = true
+}
+
+local hop = require("hop")
+local hopDirections = require("hop.hint")
+
+-- Theme
+require('colours').LoadTheme('onedark')
+
+-- Useful variables
 
 local keymap   = vim.keymap.set
 local normal   = 'n'
@@ -93,3 +110,8 @@ keymap(normal, 's', '/<CR>', silent)
 
 -- Toggle spell check
 keymap(normal, "<Leader>s", Dictionary.ToggleSpellCheck, silent)
+
+-- Hop binds
+keymap(normal, "<Leader>f", function() hop.hint_words({}) end, {remap=true})
+
+
