@@ -2,6 +2,8 @@
 -- TODO:
 --
 -- * Ability to swap buffers in windows
+-- * Ability to create a floating buffer
+--
 
 local Window = {}
 local panelCount = 1
@@ -34,6 +36,15 @@ function Window.HorizontalSplit()
 
     vim.cmd [[ split ]]
     panelCount = panelCount + 1
+end
+
+function Window.CreateFloatingBuffer(opts)
+    local showBuf = false
+    local scratchBuf = true
+    local buffer = vim.api.nvim_create_buf(showBuf, scratchBuf)
+    local window = vim.api.nvim_open_win(buffer, true, opts)
+
+    return buffer
 end
 
 return Window

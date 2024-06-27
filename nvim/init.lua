@@ -1,6 +1,9 @@
 --------------------------------
 -- TODO
 --
+--* Take results from Project.Build and get error information
+--  to enable keybinds to automatically go to file/line of the
+--  next/previous error
 --
 
 -- Lua require updates
@@ -55,9 +58,12 @@ local silent = { silent = true }
 local Window = require("window_handling")
 local Dictionary = require("dictionary")
 local CxxAndC = require("cxx_and_c")
+local System = require("system")
+local Project = require("projects")
 
+---------------
 -- Key bindings
-
+---------------
 
 -- Replace colon key
 keymap(normal, 'p', ':', silent)
@@ -71,6 +77,9 @@ keymap({normal, visual}, 'l', "g<Up>", silent)
 keymap({normal, visual}, 'L', '{', silent)
 keymap({normal, visual}, ';', "<Right>", silent)
 keymap({normal, visual}, ':', "<C-Right>", silent)
+
+-- Disable normal h
+keymap({normal, visual}, 'h', nop, silent)
 
 -- Movement keys to beginning/end of line
 
@@ -114,4 +123,6 @@ keymap(normal, "<Leader>s", Dictionary.ToggleSpellCheck, silent)
 -- Hop binds
 keymap(normal, "<Leader>f", function() hop.hint_words({}) end, {remap=true})
 
+-- Build projects
+keymap(normal, "<M-b>", Project.Build, silent)
 
