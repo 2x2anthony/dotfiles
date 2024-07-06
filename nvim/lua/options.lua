@@ -24,6 +24,7 @@ function settings.BaseSettings()
     opt.spell        = true               -- Set spell-check enabled by default
     opt.syntax       = "ON"               -- Enable syntax highlighting.
     opt.shellcmdflag = "-ic"              -- Enable interactive shell in non-interactive commands
+    opt.cino         = "N-s"              -- Don't indent namespaces in C++
 end
 
 return settings
