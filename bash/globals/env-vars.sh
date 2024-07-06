@@ -1,7 +1,7 @@
 # Default text editor
 
-export EDITOR='nvim'
-export VISUAL='nvim'
+export EDITOR='nvim -u $DOTFILES_LOCATION/nvim/init.lua'
+export VISUAL='nvim -u $DOTFILES_LOCATION/nvim/init.lua'
 
 # Language
 
