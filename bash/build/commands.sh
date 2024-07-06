@@ -24,8 +24,7 @@ function build {
         success=$?
     else
         echo "Build directory found: $DIR/Build. Unknown build script."
-        cd $CUR
-        return 1
+        success=1
     fi
 
     cd $CUR
