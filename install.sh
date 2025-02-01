@@ -56,6 +56,10 @@ function _setup_work_environment {
         sudo mkdir /work
         sudo chown $USER:$USER /work
     fi
+
+    if [[ ! -d "/work/embedded" ]]; then
+        mkdir /work/embedded
+    fi
 }
 
 function _install_esp_dev_environment {
