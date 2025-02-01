@@ -6,3 +6,7 @@ source $DOTFILES_LOCATION/bash/environments/default-env.sh
 
 # Development environment
 source $DOTFILES_LOCATION/bash/environments/dev-env.sh
+
+# ESP Development environment
+source $DOTFILES_LOCATION/bash/environments/dev-esp.sh
+
