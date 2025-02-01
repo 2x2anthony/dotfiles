@@ -70,7 +70,7 @@ function _install_esp_dev_environment {
         _apt_or_yum libusbx
     fi
 
-    bash -c "cd /work/SDKs/esp-idf-$ESP_IDF_VER; ./install.sh esp32"
+    bash -c "cd /work/SDKs/esp-idf-$ESP_IDF_VER; ./install.sh esp32c2"
 }
 
 function _setup_nvim {
