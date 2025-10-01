@@ -60,6 +60,10 @@ function _setup_work_environment {
     if [[ ! -d "/work/embedded" ]]; then
         mkdir /work/embedded
     fi
+
+    if [[ ! -d "/work/tools" ]]; then
+        mkdir /work/tools
+    fi
 }
 
 function _install_esp_dev_environment {

@@ -10,3 +10,6 @@ source $DOTFILES_LOCATION/bash/environments/dev-env.sh
 # ESP Development environment
 source $DOTFILES_LOCATION/bash/environments/dev-esp.sh
 
+# YT Development environment
+source $DOTFILES_LOCATION/bash/environments/dev-yt.sh
+
