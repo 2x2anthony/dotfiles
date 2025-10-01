@@ -40,7 +40,7 @@ function _install_env_vars {
         mkdir -p ~/.config/environment.d
     fi
 
-    local envFile="~/.config/environment.d/10-env.conf"
+    local envFile="$HOME/.config/environment.d/10-env.conf"
 
     if [[ ! -f $envFile ]]; then
         touch $envFile
