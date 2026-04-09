@@ -130,5 +130,7 @@ keymap(normal, "<Leader>f", function() hop.hint_words({}) end, {remap=true})
 keymap(normal, "<M-b>", Project.Build, silent)
 
 -- Play entire tidal file
-keymap(normal, "<Leader>p", ":normal ggVG<CR>:TidalSend<CR>", silent)
+keymap(normal, "<Leader>p", function() local c = vim.api.nvim_win_get_cursor(0); vim.cmd([[
+    normal ggVG
+    TidalSend]]); vim.api.nvim_win_set_cursor(0, c); end, silent)
 keymap(normal, "<Leader>[", ":TidalHush<CR>", silent)
