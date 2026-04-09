@@ -33,6 +33,7 @@ require("plugins").Load('hop').setup {
     current_line_only = false,
     multi_windows = true
 }
+require("plugins").LoadVim('tidal.vim', 'vim-tidal/plugin/')
 
 local hop = require("hop")
 local hopDirections = require("hop.hint")

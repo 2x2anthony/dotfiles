@@ -7,3 +7,6 @@
 [submodule "nvim/plugins/hop.nvim"]
 	path = nvim/plugins/hop
 	url = https://github.com/smoka7/hop.nvim
+[submodule "nvim/plugins/vim-tidal"]
+	path = nvim/plugins/vim-tidal
+	url = https://github.com/tidalcycles/vim-tidal
