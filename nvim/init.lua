@@ -129,3 +129,6 @@ keymap(normal, "<Leader>f", function() hop.hint_words({}) end, {remap=true})
 -- Build projects
 keymap(normal, "<M-b>", Project.Build, silent)
 
+-- Play entire tidal file
+keymap(normal, "<Leader>p", ":normal ggVG<CR>:TidalSend<CR>", silent)
+keymap(normal, "<Leader>[", ":TidalHush<CR>", silent)
