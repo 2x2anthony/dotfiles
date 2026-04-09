@@ -33,6 +33,8 @@ require("plugins").Load('hop').setup {
     current_line_only = false,
     multi_windows = true
 }
+
+vim.g.tidal_boot = string.format("%s/nvim/plugins/vim-tidal/Tidal.ghci", dotfiles)
 require("plugins").LoadVim('tidal.vim', 'vim-tidal/plugin/')
 
 local hop = require("hop")
