@@ -17,7 +17,6 @@ function Plugins.LoadVim(name, path)
     if path ~= name then
         path = path .. name
     end
-    vim.opt.runtimepath:append(string.format("%s/nvim/plugins/%s", dotfiles, path))
 
     return vim.cmd(string.format("source %s/nvim/plugins/%s", dotfiles, path))
 end
