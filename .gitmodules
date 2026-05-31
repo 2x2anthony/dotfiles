@@ -10,3 +10,6 @@
 [submodule "nvim/plugins/vim-tidal"]
 	path = nvim/plugins/vim-tidal
 	url = https://github.com/tidalcycles/vim-tidal
+[submodule "nvim/plugins/zig.vim"]
+	path = nvim/plugins/zig.vim
+	url = https://codeberg.org/ziglang/zig.vim

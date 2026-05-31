@@ -37,6 +37,10 @@ require("plugins").Load('hop').setup {
 vim.g.tidal_boot = string.format("%s/nvim/plugins/vim-tidal/Tidal.ghci", dotfiles)
 require("plugins").LoadVim('tidal.vim', 'vim-tidal/plugin/')
 
+-- For some reason, the zig plugin that comes with neovim is causing errors. Force this version to be used instead.
+vim.g.zig_fmt_autosave = 0;
+require("plugins").LoadVim('zig.vim', 'zig.vim/ftplugin/')
+
 local hop = require("hop")
 local hopDirections = require("hop.hint")
 

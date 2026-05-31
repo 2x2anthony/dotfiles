@@ -81,6 +81,26 @@ function _install_esp_dev_environment {
     bash -c "cd /work/SDKs/esp-idf-$ESP_IDF_VER; ./install.sh esp32c2"
 }
 
+function _install_latest_stable_zig {
+    if [[ ! -d ~/.software/zig ]]; then
+        mkdir ~/.software/zig;
+    fi
+
+    ZIG_JSON=$(curl -s "https://ziglang.org/download/index.json");
+    ZIG_VER=$(echo $ZIG_JSON | jq -r 'keys[]' | grep -vE 'master|dev|0.0.0' | sort -V | tail -n 1);
+    echo $ZIG_VER > ~/.software/zig/zig_version.txt;
+    read -r ZIG_URL ZIG_SHASUM < <(echo $ZIG_JSON | jq -r --arg v "$ZIG_VER" '.[$v]."x86_64-linux" | "\(.tarball) \(.shasum)"');
+    echo $ZIG_URL
+    echo $ZIG_SHASUM
+    ZIG_FILE="zig-$ZIG_VER.tar.xz";
+    curl -L0 "$ZIG_URL" -o $ZIG_FILE;
+    echo "$ZIG_SHASUM $ZIG_FILE" | sha256sum --check;
+    if [[ "$?" == "0" ]]; then
+        tar -xvf $ZIG_FILE -C ~/.software/zig --strip-components=1;
+    fi
+    rm $ZIG_FILE;
+}
+
 function _setup_nvim {
     # If this repository was not initialised with --recurse-submodules
     # then the submodules have not been downloaded.
