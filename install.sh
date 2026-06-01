@@ -113,6 +113,7 @@ function run {
     _install_bash
     _setup_nvim
     _install_env_vars
+    _install_latest_stable_zig
     _install_esp_dev_environment
 }
 
