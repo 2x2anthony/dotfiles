@@ -101,6 +101,45 @@ function _install_latest_stable_zig {
     rm $ZIG_FILE;
 }
 
+function _install_latest_stable_nvim {
+    local TARGET_DIR="$HOME/.software/nvim";
+    if [[ ! -d $TARGET_DIR ]]; then
+        mkdir $TARGET_DIR;
+    fi
+
+    local NVIM_JSON=$(curl -s "https://api.github.com/repos/neovim/neovim/releases");
+    local LATEST_STABLE=$(echo "$NVIM_JSON" | jq -r '
+    [.[] | select(.draft == false and .prerelease == false)] 
+    | first 
+    ');
+    local NVIM_ASSET=$(echo "$LATEST_STABLE" | jq -r '
+    .assets[] 
+    | select(.name | contains("linux-x86_64") and endswith(".tar.gz")) 
+    ');
+
+    local DOWNLOAD_URL=$(echo "$NVIM_ASSET" | jq -r '.browser_download_url');
+    local DOWNLOAD_SHASUM=$(echo "$NVIM_ASSET" | jq -r '.digest');
+
+    local NEWEST_VERSION=$(echo "$LATEST_STABLE" | jq -r '.tag_name');
+
+    echo $NEWEST_VERSION > "$TARGET_DIR/nvim_version.txt";
+    echo $DOWNLOAD_URL;
+    echo $DOWNLOAD_SHASUM;
+
+    local NVIM_FILE="nvim-$NEWEST_VERSION.tar.gz"
+    curl -L0 "$DOWNLOAD_URL" -o $NVIM_FILE;
+    echo "${DOWNLOAD_SHASUM#sha256:}  $NVIM_FILE" | sha256sum --check;
+
+    if [[ "$?" == "0" ]]; then
+        tar -xvf $NVIM_FILE -C ~/.software/nvim --strip-components=1;
+    else
+        # SHA failed, no version installed anymore.
+        rm "$TARGET_DIR/nvim_version.txt";
+    fi
+
+    rm $NVIM_FILE;
+}
+
 function _setup_nvim {
     # If this repository was not initialised with --recurse-submodules
     # then the submodules have not been downloaded.
@@ -114,6 +153,7 @@ function run {
     _setup_nvim
     _install_env_vars
     _install_latest_stable_zig
+    _install_latest_stable_nvim
     _install_esp_dev_environment
 }
 
