@@ -10,8 +10,6 @@ function _DEFAULT_ENVIRONMENT_ {
     tmux has-session -t $TMUX_SESSION_NAME
     if [[ $? != 0 ]]; then
         tmux -f $TMUX_CONFIGURATION new-session -d -t $TMUX_SESSION_NAME
-        tmux rename-window -t $TMUX_SESSION_NAME "Email"
-        tmux send-keys -t $TMUX_SESSION_NAME aerc C-m
         tmux new-window -t $TMUX_SESSION_NAME -n Mastodon
         tmux send-keys -t $TMUX_SESSION_NAME "toot tui" C-m
         tmux new-window -t $TMUX_SESSION_NAME -n Monitoring
